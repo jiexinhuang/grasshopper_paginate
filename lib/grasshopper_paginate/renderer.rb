@@ -7,11 +7,11 @@ module Grasshopper
 			protected
 
 			def gap
-				tag :li, link(super, '#') + page_input, :class => 'unavailable'
+				tag :li, link(super, '#') + page_input, :class => 'gap'
 			end
 
       def page_input
-        tag :input, nil, type: 'number', class: 'goto-page'
+        tag :input, nil, type: 'number', class: 'goto-page hide'
       end
 
 			def page_number(page)
