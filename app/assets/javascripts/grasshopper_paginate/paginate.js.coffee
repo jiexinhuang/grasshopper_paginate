@@ -5,6 +5,7 @@ $ ->
     goto = root.find 'ul.goto'
     goto.removeClass 'hide'
     gotoInput = goto.find 'input.goto-page'
+    gotoInput.focus().select()
     url = gotoInput.attr 'url'
     totalPage = parseInt gotoInput.attr('total')
     gotoInput.keyup (event) ->
