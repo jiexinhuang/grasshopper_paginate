@@ -20,4 +20,6 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'rails', '>= 4.2.0', '< 5.0.0'
   gem.add_dependency 'foundation-rails',  '~> 5.5', '>= 5.5.0'
+  gem.add_dependency 'jquery-rails', '~> 3.1.0'
+  gem.add_dependency 'sass-rails', '~> 5.0.1'
 end
