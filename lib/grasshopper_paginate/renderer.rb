@@ -7,12 +7,8 @@ module Grasshopper
 			protected
 
 			def gap
-				tag :li, link(super, '#') + page_input, :class => 'gap'
+				tag :li, link(super, nil), :class => 'goto-gap'
 			end
-
-      def page_input
-        tag :input, nil, type: 'number', class: 'goto-page hide'
-      end
 
 			def page_number(page)
 				tag :li, link(page, page, :rel => rel_value(page)), :class => ('current' if page == current_page)
@@ -23,8 +19,31 @@ module Grasshopper
 			end
 
 			def html_container(html)
-				tag(:ul, html, container_attributes) 
+				content = tag(:ul, html, container_attributes) + goto_input
+        tag :div, content, class: 'grasshopper-pagination'
 			end
+
+      private
+
+      def goto_input
+        tag :ul, page_input, class: 'pagination goto hide'
+      end
+
+      def page_input
+        input = tag :input, nil, input_data
+        input = tag :li, input
+        total_count = tag :li, tag(:a, "&nbsp; / &nbsp; #{total_pages}".html_safe, class: 'total-pages'), class: 'unavailable'
+        previous_page + input + total_count + next_page
+      end
+
+      def input_data
+        {
+          class: 'goto-page',
+          value: current_page,
+          url: url('page_number'),
+          total: total_pages
+        }
+      end
 		end
   end
 end
