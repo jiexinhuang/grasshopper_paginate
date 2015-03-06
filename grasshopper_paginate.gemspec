@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["hjx500@gmail.com"]
   gem.description   = %q{change based on foundation-will_paginate gem, use foundation style pagination and also provides a goto page input area when gap is clicked}
   gem.summary       = %q{enhanced foundation pagination with will_paginate}
-  gem.homepage      = ''
+  gem.homepage      = 'https://github.com/jiexinhuang/grasshopper_paginate'
   gem.license       = 'MIT'
 
   gem.files         = `git ls-files`.split($/)
