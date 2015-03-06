@@ -4,9 +4,9 @@ Integrates Zurb Foundation's [pagination styles](http://foundation.zurb.com/docs
 
 Based on [foundation-will_paginate](https://github.com/markmcconachie/foundation-will_paginate) with several changes:
 
-* display of goto input field when gap is clicked
-* accept user params for view renderer
-* default inner box of 1
+* When gap is clicked, display an input field for exact page number, hit enter will navigate the the particular page
+* Change default inner_window to 1
+* When total count is no more than 1.5 times of per_page count, do not show pagination links, display all records
 
 ## Installation
 
@@ -22,7 +22,29 @@ Or install it yourself as:
 
     $ gem install grasshopper_paginate 
 
+## Configuration
+
+Include assets
+
+    application.js
+    //= require grasshopper_paginate/paginate
+
+    application.css
+    //= require grasshopper_paginate/paginate
+
 ## Usage
+
+For paginated query, with will_paginate, you woul usually use
+``` ruby
+@users = User.paginate page: params[:page]
+
+```
+
+Now use
+``` ruby
+@users = User.smart_paginate page: params[:page]
+
+```
 
 In your view where you would usually use
 
