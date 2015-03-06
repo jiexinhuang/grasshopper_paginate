@@ -12,8 +12,8 @@ module Grasshopper
         end
       end
       ::ActiveRecord::Base.extend Pagination
-      ::ActiveRecord::Relation.include Pagination
-      ::ActiveRecord::Associations::CollectionProxy.include Pagination
+      ::ActiveRecord::Relation.send :include, Pagination
+      ::ActiveRecord::Associations::CollectionProxy.send :include, Pagination
     end
   end
 end
