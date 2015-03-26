@@ -16,3 +16,4 @@ $ ->
         newUrl = url.replace 'page_number', newPage
         hiddenLink.attr 'href', newUrl
         hiddenLink.click()
+        window.location.href = newUrl unless goto.hasClass('ajax')

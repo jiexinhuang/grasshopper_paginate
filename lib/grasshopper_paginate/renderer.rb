@@ -26,7 +26,9 @@ module Grasshopper
       private
 
       def goto_input
-        tag :ul, page_input, class: 'pagination goto hide'
+        class_list = 'pagination goto hide'
+        class_list += ' ajax' if @options[:ajax]
+        tag :ul, page_input, class: class_list
       end
 
       def page_input

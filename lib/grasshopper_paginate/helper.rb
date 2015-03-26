@@ -1,8 +1,8 @@
 module Grasshopper
   module Paginate
 	  module Helper
-	    def grasshopper_paginate(pages)
-	      will_paginate pages, default_options
+	    def grasshopper_paginate(pages, options={})
+	      will_paginate pages, options.merge(default_options)
 	    end
 
       private
