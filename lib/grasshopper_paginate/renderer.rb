@@ -31,6 +31,8 @@ module Grasshopper
 
       def page_input
         input = tag :input, nil, input_data
+        hidden_link = tag :a, nil, class: 'hidden-link'
+        input += hidden_link
         input = tag :li, input
         total_count = tag :li, tag(:a, "&nbsp; / &nbsp; #{total_pages}".html_safe, class: 'total-pages'), class: 'unavailable'
         previous_page + input + total_count + next_page

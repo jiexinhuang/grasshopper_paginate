@@ -7,9 +7,12 @@ $ ->
     gotoInput = goto.find 'input.goto-page'
     gotoInput.focus().select()
     url = gotoInput.attr 'url'
+    hiddenLink = goto.find 'a.hidden-link'
     totalPage = parseInt gotoInput.attr('total')
     gotoInput.keyup (event) ->
       if event.which == 13
         newPage = parseInt(gotoInput.val()) || 1
         newPage = totalPage if newPage > totalPage
-        window.location.href = url.replace 'page_number', newPage
+        newUrl = url.replace 'page_number', newPage
+        hiddenLink.attr 'href', newUrl
+        hiddenLink.click()
