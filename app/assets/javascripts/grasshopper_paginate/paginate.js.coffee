@@ -17,3 +17,13 @@ $ ->
         hiddenLink.attr 'href', newUrl
         hiddenLink.click()
         window.location.href = newUrl unless goto.hasClass('ajax')
+  
+  $('html').on 'keyup', 'input.jump-page', (event) ->
+    if event.which == 13
+      gotoInput = $('.jump-page')
+      totalPage = parseInt gotoInput.attr('total')
+      url = gotoInput.attr 'url'
+      newPage = parseInt(gotoInput.val()) || 1
+      newPage = totalPage if newPage > totalPage
+      newUrl = url.replace 'page_number', newPage
+      window.location.href = newUrl
