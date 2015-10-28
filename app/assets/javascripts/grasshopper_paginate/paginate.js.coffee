@@ -18,9 +18,9 @@ $ ->
         hiddenLink.click()
         window.location.href = newUrl unless goto.hasClass('ajax')
   
-  $('html').on 'keyup', 'input.jump-page', (event) ->
+  $('html').on 'keyup', 'input.goto-page', (event) ->
     if event.which == 13
-      gotoInput = $('.jump-page')
+      gotoInput = $(this)
       totalPage = parseInt gotoInput.attr('total')
       url = gotoInput.attr 'url'
       newPage = parseInt(gotoInput.val()) || 1

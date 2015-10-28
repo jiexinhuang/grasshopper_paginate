@@ -12,8 +12,10 @@ module Grasshopper
 	        :inner_window => 1,
           :outer_window => 0,
           :renderer => Grasshopper::Paginate::Renderer,
-          :previous_label => '&laquo;'.html_safe,
-          :next_label => '&raquo;'.html_safe
+          :previous_label => '&lsaquo;'.html_safe,
+          :next_label => '&rsaquo;'.html_safe,
+          :last_label => '&raquo;'.html_safe,
+          :first_label => '&laquo;'.html_safe
         }
       end
 	  end
