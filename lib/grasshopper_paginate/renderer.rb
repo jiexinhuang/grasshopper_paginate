@@ -6,13 +6,13 @@ module Grasshopper
       
       def to_html
         if  @options[:enable_per_page_input]
-              tag :div, per_page_html + navigation_html, class: 'grasshopper-pagination'
+          tag :div, per_page_html + navigation_html, class: 'grasshopper-pagination'
         else
           super
         end
       end
 	
-			protected
+      protected
 
       def gap
         tag :li, link(super, nil), :class => 'goto-gap'
