@@ -5,40 +5,8 @@ module Grasshopper
     class Renderer < ::WillPaginate::ActionView::LinkRenderer
       
       def to_html
-        if  @options.exclude?(:enable_user_input)  || @options[:enable_user_input]
-          # User options for per page
-          view_per_page = tag :li, tag(:h6 , 'View per page:')
-          Grasshopper::Paginate.per_page_options.each do |per_page|
-            view_per_page += tag(
-              :li,
-              tag(:a, per_page, href: first_page_w_per_page(per_page)),
-              class: (per_page == @collection.per_page ? "current":"" )
-            )
-          end
-          content = tag(:ul, view_per_page , class: 'pagination per-page')
-          
-          # First page link
-          first = previous_or_next_page(current_page > 1 ? 1 : nil, @options[:first_label], :first_page)
-
-          # Previous page link
-          previous  = previous_or_next_page(current_page > 1 ?  current_page-1 : nil, @options[:previous_label], :previous_label) 
-
-          # Page input from user
-          page_input = tag(:li, tag(:input, nil, { class: 'default-goto-page goto-page', value: current_page, url: url('page_number'),total: total_pages }))
-          page_input_message  = tag(:li, tag(:h6," of #{total_pages} pages"))
-          p_input =  page_input + page_input_message
-
-          # Next page link
-          nextt = previous_or_next_page(current_page < total_pages ? current_page+1 : nil, @options[:next_label], :next_label)
-
-          # Last page link
-          last  = previous_or_next_page(current_page < total_pages ? total_pages : nil , @options[:last_label], :last_page) 
-
-          # Putting all links together
-          content += tag(:ul , first + previous + p_input + nextt + last , class: 'pagination page-navigation')
-          
-          # Grasshoper pagination options
-          tag :div, content, class: 'grasshopper-pagination'
+        if  @options[:enable_per_page_input]
+              tag :div, per_page_html + navigation_html, class: 'grasshopper-pagination'
         else
           super
         end
@@ -64,6 +32,41 @@ module Grasshopper
       end
 
       private
+
+      def per_page_html
+        # User options for per page
+        view_per_page = tag :li, tag(:h6, 'View per page: ')
+        Grasshopper::Paginate.per_page_options.each do |per_page|
+          view_per_page += tag(
+            :li,
+            tag(:a, per_page, href: first_page_w_per_page(per_page)),
+            class: (per_page == @collection.per_page ? "current":"" )
+          )
+        end
+        content = tag(:ul, view_per_page , class: 'pagination per-page')
+      end
+
+      def navigation_html
+        # First page link
+        first = previous_or_next_page(current_page > 1 ? 1 : nil, @options[:first_label], :first_page)
+
+        # Previous page link
+        previous  = previous_or_next_page(current_page > 1 ?  current_page-1 : nil, @options[:previous_label], :previous_label) 
+
+        # Page input from user
+        page_input = tag(:li, tag(:input, nil, { class: 'default-goto-page goto-page', value: current_page, url: url('page_number'),total: total_pages }))
+        page_input_message  = tag(:li, tag(:h6," of #{total_pages} pages"))
+        p_input =  page_input + page_input_message
+
+        # Next page link
+        nextt = previous_or_next_page(current_page < total_pages ? current_page+1 : nil, @options[:next_label], :next_label)
+
+        # Last page link
+        last  = previous_or_next_page(current_page < total_pages ? total_pages : nil , @options[:last_label], :last_page) 
+
+        # Putting all links together
+        content = tag(:ul , first + previous + p_input + nextt + last , class: 'pagination page-navigation')
+      end
 
       def first_page_w_per_page(per_page)
         first_page_url = url(1)

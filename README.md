@@ -59,9 +59,10 @@ Now use
 <%= grasshopper_paginate @posts %>
 ```
 
-The default per page options provided to User are 10,20 to override. Add a file in config/initializers/grasshopper_paginate.rb with content,for e.g. 2,5,10 per page options.
+The default per page options provided to User are 10,20. To override these options add a file in config/initializers/grasshopper_paginate.rb with content.
 
 ``` ruby
+# Per page options 2,5,10
 Grasshopper::Paginate.per_page_options = [2,5,10]
 ```
 
