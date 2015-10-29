@@ -1,5 +1,8 @@
 .grasshopper-pagination {
   input.goto-page {
+    .default-goto-page{
+      height: 1.35rem;
+    }
     width: 3rem;
     text-align: right;
     color: #999;
@@ -10,5 +13,10 @@
 
   a.total-pages {
     padding: 2px 0px 0px 0px;
+  }
+
+  ul.pagination{
+   margin: 2px 10px 2px 10px;
+   display:inline-block;
   }
 }
