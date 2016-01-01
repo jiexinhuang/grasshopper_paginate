@@ -7,6 +7,7 @@ Based on [foundation-will_paginate](https://github.com/markmcconachie/foundation
 * When gap is clicked, display an input field for exact page number, hit enter will navigate the the particular page
 * Change default inner_window to 1
 * When total count is no more than 1.5 times of per_page count, do not show pagination links, display all records
+* Give user the option to provide per page input number
 
 ## Installation
 
@@ -57,6 +58,15 @@ Now use
 ```
 <%= grasshopper_paginate @posts %>
 ```
+
+The default per page options provided to User are 10,20. To override these options add a file in config/initializers/grasshopper_paginate.rb with content.
+
+``` ruby
+# Per page options 2,5,10
+Grasshopper::Paginate.per_page_options = [2,5,10]
+```
+
+
 
 ## Contributing
 
